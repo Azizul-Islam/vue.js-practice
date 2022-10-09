@@ -3,38 +3,30 @@
         
     <div class="container">
         <h2>{{ msg }}</h2>
-        <credit-card v-model:cardName="cardName"
-         v-model:cardNumber="cardNumber"
-         v-model:expiry="expiry"
-         v-model:cvv="cvv"></credit-card>
+        <the-comment v-model:myComment="myComment" buttonText="Submit" foo="bar" class="shadow" placeholder="Enter your comment"
+        ></the-comment>
         <br />
         <br />
         <hr />
         <br />
         <p>
-            Name: {{ cardName }} <br />
-            Card Number: {{ cardNumber }} <br />
-            Expiry: {{ expiry }} <br />
-            CVV: {{ cvv }} <br />
+           {{ myComment }}
         </p>
     </div>
     </div>
 </template>
 
 <script>
-    import CreditCard from './CreditCard.vue'
+    import TheComment from './TheComment.vue'
     export default {
         data() {
             return {
                 msg: 'Credit Card Input',
-                cardName: "Azizul Islam",
-                cardNumber: '01734567',
-                expiry: "",
-                cvv: "",
+               myComment: "This is my comment."
             };
         },
         components: {
-            CreditCard
+            TheComment
         },
         methods: {
            
