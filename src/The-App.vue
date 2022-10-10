@@ -1,67 +1,58 @@
 <template>
-    <div>
-        
-    <div class="container">
-        <h2>{{ msg }}</h2>
-        <the-comment v-model:myComment="myComment" buttonText="Submit" foo="bar" class="shadow" placeholder="Enter your comment"
-        @continueClick="handleDialogBox"></the-comment>
-        <br />
-        <br />
-        <hr />
-        <br />
-        <p>
-           {{ myComment }}
-        </p>
+    <div class="tab">
+        <div class="tab_menu">
+            <div  
+            v-for="tab in tabs" :key="tab" 
+            class="tab_menu_item" 
+            :class="{ 'tab_menu_item_active': activeTab === tab}"
+            @click="activeTab = tab"
+            >
+                {{ tab }}
+            </div>
+        </div>
+        <!-- <Login v-if="activeTab === 'Login'" />
+        <Register v-if="activeTab === 'Register'" /> -->
 
-        <button  @click="handleNotification">Show Notification</button>
-
-        <the-dialog  v-if="showDialog">
-            <p>
-                Are you really want to comment?
-                <br />
-                <button @click="handleNotification">Yes</button>
-                <button @click="showDialog = false">No</button>
-            </p>
-        </the-dialog>
-        <the-notification v-for="(n,i) in notifications" :key="i" :text="n"></the-notification>
-    </div>
+        <keep-alive>
+            <component :is="activeTab" />
+        </keep-alive>
     </div>
 </template>
-
 <script>
-    import TheComment from './TheComment.vue'
-    import TheDialog from './TheDialog.vue'
-    import TheNotification from './TheNotification.vue'
+    import Login from './Login.vue'
+    import Register from './Register.vue'
     export default {
         data() {
             return {
-                msg: 'Credit Card Input',
-               myComment: "This is my comment.",
-               showDialog: false,
-               notifications: [],
+                tabs: ["Login",'Register'],
+                activeTab: "Login"
             };
-        },
+        },  
         components: {
-            TheComment,
-            TheDialog,
-            TheNotification
-        },
-        methods: {
-            handleDialogBox(){
-                this.showDialog = true;
-            },
-            handleNotification(){
-                this.notifications.push("Comment Submitted success");
-                setTimeout(() => {
-                    this.notifications.shift();
-                },2222)
-            },
+            Login,
+            Register
         }
     }
 </script>
 
 <style>
-    .container{
-        padding: 22px;
-    }
+.tab{
+
+}
+.tab_menu{
+    display: flex;
+}
+.tab_menu_item{
+    padding: 6px 15px;
+    background: #dbdbdb;
+    cursor: pointer;
+}
+.tab_menu_item_active{
+    color: #fff;
+    background: rgb(27,104,192);
+}
+input{
+    padding: 5px 11px;
+    margin-bottom: 11px;
+}
 </style>
