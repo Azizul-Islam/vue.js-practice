@@ -1,7 +1,7 @@
 <template>
     <div class="credit-card">
         <textarea :value="myComment" @input="handleComment" v-bind="$attrs"></textarea><br>
-        <button>{{ buttonText }}</button>
+        <button @click="$emit('continueClick')">{{ buttonText }}</button>
     </div>
 </template>
 <script>
