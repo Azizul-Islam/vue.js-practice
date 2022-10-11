@@ -21,16 +21,28 @@
 <script>
     import Login from './Login.vue'
     import Register from './Register.vue'
+    import Contact from './Contact.vue'
     export default {
         data() {
             return {
-                tabs: ["Login",'Register'],
-                activeTab: "Login"
+                tabs: ["Login",'Register',"Contact"],
+                activeTab: "Login",
+                name: "Azizul Islam",
+                email: "cseazizul@gmail.com",
+                phone: "01738040305",
             };
         },  
+        provide(){
+            return {
+                name: this.name,
+                email: this.email,
+                phone: this.phone
+            }
+        },
         components: {
             Login,
-            Register
+            Register,
+            Contact
         }
     }
 </script>
