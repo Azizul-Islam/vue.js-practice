@@ -34,7 +34,7 @@
     background-color: #fff;
     border-radius: 2px;
     color: green;
-    transition: all 1s ease;
+    /* transition: all 1s ease; */
 
 }
 .toast_Error{

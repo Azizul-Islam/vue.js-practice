@@ -1,8 +1,10 @@
 <template>
   <login></login>
-  <div class="toasts">
-    <the-toast v-for="(toast,i) in toasts" :key="i" :message="toast.message" :toastType="toast.type" ></the-toast>
-  </div>
+  <!-- <div class="toasts"> -->
+  <TransitionGroup name="slide-left" tag="div" class="toasts">
+      <the-toast v-for="(toast,i) in toasts" :key="i" :message="toast.message" :toastType="toast.type" ></the-toast>
+  </TransitionGroup>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -40,3 +42,15 @@
     }
   }
 </script>
+
+<style>
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.25s ease;
+}
+.slide-left-enter-from,
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+</style>
