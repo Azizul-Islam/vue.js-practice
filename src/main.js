@@ -1,11 +1,18 @@
 import { createApp } from 'vue'
-import App from './The-App.vue'
-// import ContactDetails from './ContactDetails.vue'
+import './style.css'
+import App from './App.vue'
+import mitt from 'mitt'
+ 
 
 
-var app = createApp(App);
-// app.component('contact-details', ContactDetails)
-app.mount('#app');
+import './assets/css/ayoflex.css';
+import './assets/css/example.css';
 
 
-// console.log("hello world!");
+
+let eventBus = mitt();
+
+const app = createApp(App);
+app.config.globalProperties.$eventBus = eventBus;
+
+app.mount('#app')
