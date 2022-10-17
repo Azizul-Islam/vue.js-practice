@@ -6,12 +6,14 @@
                 <h2>User Login</h2>
             </div>
             <form action="#" @submit.prevent="handleLoginForm">
-                <label class="block">Email</label>
-                <input type="email" ref="email" v-model="formData.email" placeholder="Enter your email">
+                <label class="block">Username</label>
+                <input type="text" ref="username" v-model="formData.username" placeholder="Enter your username">
                 <label class="block mt-3">Password</label>
                 <input type="password" ref="password" v-model="formData.password" placeholder="Enter password">
-                <button type="submit" class="w-100 mt-3">Login</button>
-            
+                
+                <p class="text-center mt-3" v-if="loggingIn">Logging in...</p>
+                <!-- <button type="submit" class="w-100 mt-3" v-else>Login</button> -->
+                <TheButton :block="true"  class="mt-3">Login</TheButton>
                 <div class="d-flex jc-between mt-3">
                     <div>
                         <label>
@@ -29,22 +31,26 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import TheButton from '../components/TheButton.vue';
+
     export default {
         data: () => ({
         formData: {
-                email: "",
+                username: "",
                 password: "",
             },
+            loggingIn: false,
         }),
         methods: {
             handleLoginForm(){
-                if(!this.formData.email){
-                    // alert('Email field must be required!');
+                if(!this.formData.username){
+                    // alert('username field must be required!');
                     this.$eventBus.emit('toast', {
                         type: "Error",
-                        message: "Email field must be required!"
+                        message: "username field must be required!"
                     });
-                    this.$refs.email.focus();
+                    this.$refs.username.focus();
                     return;
                 }
                 if(!this.formData.password){
@@ -66,8 +72,33 @@
                 //     return;
                 // } 
                 // console.log(this.formData);
+                this.loggingIn = true;
+                axios.post("https://api.rimoned.com/api/pharmacy-management/v1/login", this.formData)
+                .then((res) => {
+                    this.$eventBus.emit('toast', {
+                        type: "Success",
+                        message: res.data.message
+                    });
+                })
+                .catch((err) => {
+                    let errorMessage = "Something went wrong!";
+                    if(err.response) {
+                        errorMessage = err.response.data.message;
+                    }
+                    this.$eventBus.emit('toast', {
+                        type: "Error",
+                        message: errorMessage
+                    });
+                    this.$router.push("/dashboard");
+                })
+                .finally(() => {
+                    this.loggingIn = false;
+                });
             }
         },
+        components: {
+            TheButton
+        }
     }
 </script>
 
@@ -92,7 +123,7 @@
         padding: 44px 33px;
         
     }
-    .login-card input[type="email"],
+    .login-card input[type="text"],
     .login-card input[type="password"]{
         width: 100%
     }

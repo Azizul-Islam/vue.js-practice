@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import mitt from 'mitt'
- 
 
+
+import mitt from 'mitt'
+import router from './router';
+ 
+import App from './App.vue'
 
 import './assets/css/ayoflex.css';
 import './assets/css/example.css';
@@ -13,6 +14,7 @@ import './assets/css/example.css';
 let eventBus = mitt();
 
 const app = createApp(App);
+app.use(router);
 app.config.globalProperties.$eventBus = eventBus;
 
 app.mount('#app')
