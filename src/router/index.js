@@ -6,6 +6,7 @@ const Drugs = ()=> import('../views/dashboard/Drugs.vue');
 const Vendors = ()=> import('../views/dashboard/Vendors.vue');
 const SellingHistory = ()=> import('../views/dashboard/SellingHistory.vue');
 const Settings = ()=> import('../views/dashboard/Settings.vue');
+const Skills = ()=> import('../views/dashboard/Skills.vue');
 
 const routes = [
     {
@@ -22,8 +23,10 @@ const routes = [
             { path: "vendors", component: Vendors },
             { path: "selling-history", component: SellingHistory },
             { path: "settings", component: Settings },
+            { path: "skills", component: Skills },
         ]
-    }
+    },
+   
 ];
 
 const router = createRouter({

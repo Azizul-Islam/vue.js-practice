@@ -10,6 +10,7 @@
                 <router-link to="/dashboard/vendors">Vendors</router-link>
                 <router-link to="/dashboard/selling-history">Selling History</router-link>
                 <router-link to="/dashboard/settings">Settings</router-link>
+                <router-link to="/dashboard/skills">Skills</router-link>
             </div>
         </div>
     </div>
