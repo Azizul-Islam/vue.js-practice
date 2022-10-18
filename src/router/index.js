@@ -6,7 +6,9 @@ const Drugs = ()=> import('../views/dashboard/Drugs.vue');
 const Vendors = ()=> import('../views/dashboard/Vendors.vue');
 const SellingHistory = ()=> import('../views/dashboard/SellingHistory.vue');
 const Settings = ()=> import('../views/dashboard/Settings.vue');
-const Skills = ()=> import('../views/dashboard/Skills.vue');
+const Skills = ()=> import('../views/dashboard/SkillIndex.vue');
+const SkillCreate = ()=> import('../views/dashboard/SkillCreate.vue');
+const SkillEdit = ()=> import('../views/dashboard/SkillEdit.vue');
 
 const routes = [
     {
@@ -23,7 +25,9 @@ const routes = [
             { path: "vendors", component: Vendors },
             { path: "selling-history", component: SellingHistory },
             { path: "settings", component: Settings },
-            { path: "skills", component: Skills },
+            { path: "skills", name: "SkillIndex", component: Skills },
+            { path: "skills/create", name: "SkillCreate", component: SkillCreate },
+            { path: "skills/:id/edit", name: "SkillEdit", component: SkillEdit },
         ]
     },
    
@@ -31,7 +35,7 @@ const routes = [
 
 const router = createRouter({
     routes,
-    history: createWebHistory()
+    history: createWebHistory(import.meta.env.BASE_URL)
 });
 
 export default router;
