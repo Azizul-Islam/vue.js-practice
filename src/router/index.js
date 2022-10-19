@@ -27,7 +27,7 @@ const routes = [
             { path: "settings", component: Settings },
             { path: "skills", name: "SkillIndex", component: Skills },
             { path: "skills/create", name: "SkillCreate", component: SkillCreate },
-            { path: "skills/:id/edit", name: "SkillEdit", component: SkillEdit },
+            { path: "skills/:id/edit", name: "SkillEdit", component: SkillEdit, props: true },
         ]
     },
    

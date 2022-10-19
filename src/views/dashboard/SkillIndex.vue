@@ -32,7 +32,7 @@
 <template>
     <div class="d-flex jc-between ai-center">
         <h2>All Skill</h2>
-        <RouterLink to="skills/create">Add New</RouterLink>
+        <RouterLink :to="{name: 'SkillCreate'}">Add New</RouterLink>
     </div>
     <!-- <div class="text-center" >Loading...</div> -->
     <table class="mt-4" >
